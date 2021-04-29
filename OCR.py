@@ -6,14 +6,14 @@ from pdf2image import convert_from_path
 import os
 
 # Path of the pdf
-PDF_file = "test12.pdf"
+PDF_file = ""
 
 '''
 Part #1 : Converting PDF to images
 '''
 
 # Store all the pages of the PDF in a variable
-pages = convert_from_path(PDF_file, 500)
+pages = convert_from_path(PDF_file, dpi=500)
 
 # Counter to store images of each page of PDF to image
 image_counter = 1
@@ -28,7 +28,7 @@ for page in pages:
 	# PDF page 3 -> page_3.jpg
 	# ....
 	# PDF page n -> page_n.jpg
-	filename = "page_"+str(image_counter)+".jpg"
+	filename = "acs/page_"+str(image_counter)+".jpg"
 	
 	# Save the image of the page in system
 	page.save(filename, 'JPEG')
@@ -44,7 +44,7 @@ Part #2 - Recognizing text from the images using OCR
 filelimit = image_counter-1
 
 # Creating a text file to write the output
-outfile = "OCRtext/out_text2.txt"
+outfile = ".txt" 
 
 # Open the file in append mode so that
 # All contents of all images are added to the same file
@@ -59,10 +59,10 @@ for i in range(1, filelimit + 1):
 	# page_2.jpg
 	# ....
 	# page_n.jpg
-	filename = "page_"+str(i)+".jpg"
+	filename = "acs/page_"+str(i)+".jpg"
 		
 	# Recognize the text as string in image using pytesserct
-	text = str(((pytesseract.image_to_string(Image.open(filename)))))
+	text = str(((pytesseract.image_to_string(Image.open(filename), lang='ara+eng'))))
 
 	# The recognized text is stored in variable text
 	# Any string processing may be applied on text
@@ -80,3 +80,13 @@ for i in range(1, filelimit + 1):
 
 # Close the file after writing all the text.
 f.close()
+
+#print(pytesseract.image_to_data(Image.open('page_1.jpg')))
+#print(pytesseract.image_to_string(Image.open('page_2.jpg')))
+
+
+# for page in pages:
+# 	pdf = pytesseract.image_to_pdf_or_hocr('page_1.jpg', extension='pdf')
+# 	with open('test.pdf', 'w+b') as f:
+# 	    f.write(pdf) # pdf type is bytes by default
+

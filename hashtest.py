@@ -1,7 +1,7 @@
 import hashlib
 
 
-file = "OCRtext/out_text2.txt" # Location of the file (can be set a different way)
+file = "OCRtext/acs2.txt" # Location of the file (can be set a different way)
 BLOCK_SIZE = 65536 # The size of each read from the file
 
 file_hash = hashlib.sha256() # Create the hash object, can use something other than `.sha256()` if you wish
