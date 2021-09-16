@@ -1,6 +1,6 @@
 import PyPDF2
 from PyPDF2 import PdfFileWriter, PdfFileReader, PdfFileMerger
-from reportlab.pdfgen import canvas
+#from reportlab.pdfgen import canvas ----=====------======----==---==-----=-
 import qrcode
 
 from fpdf import FPDF
